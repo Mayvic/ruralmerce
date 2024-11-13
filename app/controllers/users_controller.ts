@@ -29,13 +29,19 @@ export default class UsersController {
         return view.render('pages/users/edit')
     }
     
-    async update({request, response}: HttpContext) {
+    async update({ request, response, session }: HttpContext) {
         const payload = await request.validateUsing(createUserValidator)
         const user = await User.findByOrFail('email', payload.email)
         user.merge(payload)
     
         await user.save()
     
+        session.flash('notification', {
+            type: 'success',
+            message: 'Usuário atualizado!',
+            description: 'Informações do usuário salvas com sucesso.'
+        })
+        
         return response.redirect().toRoute('users.edit')
     }
 }

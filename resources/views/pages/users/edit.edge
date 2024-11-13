@@ -1,10 +1,13 @@
 @layouts.app()
 <div class="flex min-h-[80vh] flex-col justify-center py-12 sm:px-6 lg:px-8">
     @!title({text: 'Editar Usuário'})
+    @flashMessage('notification')
+        @!notification({type: $message.type, title: $message.message, description: $message.description})
+    @end
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div class="bg-white px-4 pb-4 pt-8 sm:rounded-lg sm:px-10 sm:pb-6">
         @form({
-            action: route('users.update'),
+            action: route('users.update', {}, { qs: { _method: 'PUT' } }),
             method: 'POST',
             class: 'space-y-6',
         })
@@ -13,6 +16,9 @@
             type: 'email',
             name: 'email',
             required: true,
+            value: auth.user.email,
+            readonly: true,
+            class: 'bg-gray-100'
             })
             
             @!input({
@@ -31,9 +37,10 @@
             <div>
             @button({
                 type: 'submit',
+                variant: 'primary',
                 class: 'w-full',
             })
-                Criar
+                Atualizar
             @end
             </div>
         @end

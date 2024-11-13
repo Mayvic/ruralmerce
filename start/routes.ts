@@ -21,7 +21,7 @@ router.get('/logout', [AuthController, 'destroy']).use(middleware.auth()).as('au
 
 router.get('/user', [UsersController, 'create']).as('users.create')
 router.post('/user', [UsersController, 'store']).as('users.store')
-router.get('/user/profile', [UsersController, 'edit']).as('users.edit')
-router.put('/user/profile', [UsersController, 'update']).as('users.update')
+router.get('/user/profile', [UsersController, 'edit']).use(middleware.auth()).as('users.edit')
+router.put('/user/profile', [UsersController, 'update']).use(middleware.auth()).as('users.update')
 
 router.on('/products').render('pages/products/index.edge').use(middleware.auth()).as('products.index')
