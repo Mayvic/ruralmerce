@@ -1,0 +1,6 @@
+<form
+  {{ $props.toAttrs() }}
+>
+  {{ csrfField() }}
+  {{{ await $slots.main() }}}
+</form>

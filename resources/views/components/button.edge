@@ -1,0 +1,30 @@
+@let(baseClass = 'inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2')
+
+@if(!href)
+<button
+class="{{ baseClass }} bg-blue-500 text-white hover:bg-blue-500/90 {{ $props.class ?? '' }}"
+{{ $props.except(['variant', 'class']).toAttrs() }}
+>
+{{{ await $slots.main() }}}
+</button>
+
+@else
+  @if(variant === 'primary')
+  <a
+  href="{{ href }}"
+  class="{{ baseClass }} bg-blue-500 text-white hover:bg-blue-500/90"
+  {{ $props.except(['variant', 'class', 'href']).toAttrs() }}
+  >
+  {{{ await $slots.main() }}}
+  </a>
+  @else
+  <a
+  href="{{ href }}"
+  class="{{ baseClass }} hover:bg-accent hover:text-accent-foreground"
+  {{ $props.except(['variant', 'class', 'href']).toAttrs() }}
+  >
+  {{{ await $slots.main() }}}
+  </a>  
+  @endif
+
+@endif

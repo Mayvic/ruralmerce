@@ -1,0 +1,43 @@
+@layouts.app()
+<div class="flex min-h-[80vh] flex-col justify-center py-12 sm:px-6 lg:px-8">
+    @!title({text: 'Editar Usuário'})
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div class="bg-white px-4 pb-4 pt-8 sm:rounded-lg sm:px-10 sm:pb-6">
+        @form({
+            action: route('users.update'),
+            method: 'POST',
+            class: 'space-y-6',
+        })
+            @!input({
+            label: 'Email',
+            type: 'email',
+            name: 'email',
+            required: true,
+            })
+            
+            @!input({
+            label: 'Senha',
+            type: 'password',
+            name: 'password',
+            required: true,
+            })
+            
+            @!input({
+            label: 'Confirme a Senha',
+            type: 'password',
+            name: 'password_confirmation',
+            required: true,
+            })
+            <div>
+            @button({
+                type: 'submit',
+                class: 'w-full',
+            })
+                Criar
+            @end
+            </div>
+        @end
+        </div>
+    </div>
+</div>
+@end
