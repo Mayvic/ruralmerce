@@ -1,1 +1,56 @@
-Criar Produto
+@layouts.app()
+<div class="flex min-h-[80vh] flex-col justify-center py-12 sm:px-6 lg:px-8">
+    @!title({text: 'Criar Produto'})
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div class="bg-white px-4 pb-4 pt-8 sm:rounded-lg sm:px-10 sm:pb-6">
+        @form({
+            action: route('products.store'),
+            method: 'POST',
+            class: 'space-y-6',
+        })
+            @!input({
+            label: 'Nome do produto',
+            type: 'text',
+            name: 'name',
+            required: true,
+            })
+            
+            @!input({
+            label: 'Preço',
+            type: 'text',
+            name: 'price',
+            required: true,
+            })
+            
+            @!input({
+            label: 'Descrição',
+            type: 'text',
+            name: 'description',
+            required: true,
+            })
+            
+            @input({
+            label: 'Categoria',
+            type: 'select',
+            name: 'categoryId',
+            required: true,
+            })
+                @each(category in categories)
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                @end
+            @end
+
+            <div>
+            @button({
+                type: 'submit',
+                variant: 'primary',
+                class: 'w-full',
+            })
+                Salvar
+            @end
+            </div>
+        @end
+        </div>
+    </div>
+</div>
+@end

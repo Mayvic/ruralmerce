@@ -1,3 +1,23 @@
 @layouts.app()
-    @!title({text: 'Produtos'})
+    <div class="flex min-h-[80vh] flex-col justify-center py-12 sm:px-6 lg:px-8">
+        @!title({text: 'Produtos'})
+
+        <ul>
+            @each(product in products)
+                <li>
+                    <a href="{{ route('products.show', { id: product.id }) }}">
+                    {{ product.name }}
+                    </a>
+                    - {{ product.price }}
+                </li>
+            @endeach
+        </ul>
+
+        @button({
+            variant: 'primary',
+            href: route('products.create')
+        })
+            Novo Produto
+        @end
+    </div>
 @end

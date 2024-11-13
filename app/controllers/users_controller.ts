@@ -2,9 +2,6 @@ import type { HttpContext } from '@adonisjs/core/http'
 import { createUserValidator } from '#validators/user'
 import User from '#models/user'
 
-import { dd } from '@adonisjs/core/services/dumper'
-import logger from '@adonisjs/core/services/logger'
-
 export default class UsersController {
     index() {
         // TODO

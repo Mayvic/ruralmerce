@@ -1,1 +1,24 @@
-Detalhar Produto
+@layouts.app()
+<div class="flex min-h-[80vh] flex-col justify-center py-12 sm:px-6 lg:px-8">
+    @!title({ text: product.name })
+    
+  <div>
+    <div class="bg-slate-200">
+      <p>
+      Nome:
+      {{ product.name }}
+      </p>
+      <p>
+      Preço:
+      {{ product.price }}
+      </p>
+    </div>
+    <div>
+      Categoria {{ product.category.name }}
+    </div>
+    <div>
+      Descrição {{ product.description }}
+    </div>
+  </div>
+</div>
+@end
