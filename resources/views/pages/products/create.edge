@@ -7,6 +7,7 @@
             action: route('products.store'),
             method: 'POST',
             class: 'space-y-6',
+            enctype: 'multipart/form-data',
         })
             @!input({
             label: 'Nome do produto',
@@ -39,6 +40,27 @@
                     <option value="{{ category.id }}">{{ category.name }}</option>
                 @end
             @end
+
+            @!input({
+            label: 'Imagem do Produto',
+            id: 'image',
+            type: 'file',
+            name: 'image',
+            accept: 'image/*',
+            required: true
+            })
+
+            <img src="#" alt="imagem do produto" id="imagePreview" class="border rounded-lg aspect-square w-full">
+            <script>
+                img = document.getElementById('image')
+                prev = document.getElementById('imagePreview')
+                img.onchange = (evt) => {
+                    const [file] = img.files
+                    if (file) {
+                        prev.src = URL.createObjectURL(file)
+                    }
+                }
+            </script>
 
             <div>
             @button({

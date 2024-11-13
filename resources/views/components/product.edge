@@ -1,0 +1,15 @@
+<div class="container max-w-sm p-4 border rounded-lg">
+    <a href="{{ route('products.show', { id: product.id }) }}">
+
+        <img src="{{ product.image }}" alt="{{ product.name }}" class="aspect-square">
+
+        <div class="flex flex-row justify-between mt-2">
+            <p>
+                {{ product.name }}
+            </p>
+            <p>
+                R$ {{ product.price }}
+            </p>
+        </div>
+    </a>
+</div>

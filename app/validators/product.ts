@@ -6,5 +6,9 @@ export const createProductValidator = vine.compile(
       price: vine.number().min(0),
       description: vine.string().trim(),
       categoryId: vine.number(),
+      image: vine.file({
+        size: '2mb',
+        extnames: ['jpeg', 'jpg', 'png'],
+      })
     })
   )

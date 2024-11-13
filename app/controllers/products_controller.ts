@@ -1,7 +1,9 @@
  import Category from '#models/category'
 import Product from '#models/product'
 import { createProductValidator } from '#validators/product'
+import { cuid } from '@adonisjs/core/helpers'
 import type { HttpContext } from '@adonisjs/core/http'
+import drive from '@adonisjs/drive/services/main'
 
 export default class ProductsController {
   /**
@@ -31,12 +33,15 @@ export default class ProductsController {
    * Handle form submission for the create action
    */
   async store({ request, response }: HttpContext) {
-    console.log('request received')
     const payload = await request.validateUsing(createProductValidator)
-    console.log('payload validated')
-    const product = await Product.create(payload)
+    
+    const key = `uploads/${cuid()}.${payload.image.extname}`
+    await payload.image.moveToDisk(key)
 
-    console.log('product created')
+    const fileUrl = await drive.use().getUrl(key)
+
+    const { name, price, description, categoryId } = payload
+    const product = await Product.create({name, price, description, categoryId, image: fileUrl})
 
     return response.redirect().toRoute('products.show', { id: product.id })
   }

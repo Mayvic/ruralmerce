@@ -11,6 +11,7 @@ export default class extends BaseSchema {
       table.decimal('price').notNullable()
       table.text('description').notNullable()
       table.integer('category_id').unsigned().notNullable().references('id').inTable('categories').onDelete('CASCADE')
+      table.text('image').notNullable()
 
       table.timestamp('created_at')
       table.timestamp('updated_at')

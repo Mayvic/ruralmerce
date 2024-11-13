@@ -2,16 +2,11 @@
     <div class="flex min-h-[80vh] flex-col justify-center py-12 sm:px-6 lg:px-8">
         @!title({text: 'Produtos'})
 
-        <ul>
+        <div class="container mx-auto w-fit grid md:grid-cols-2 lg:grid-cols-3 gap-4 my-8">
             @each(product in products)
-                <li>
-                    <a href="{{ route('products.show', { id: product.id }) }}">
-                    {{ product.name }}
-                    </a>
-                    - {{ product.price }}
-                </li>
+                @!product({ product })
             @endeach
-        </ul>
+        </div>
 
         @button({
             variant: 'primary',

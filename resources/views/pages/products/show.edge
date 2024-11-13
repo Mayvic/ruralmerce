@@ -1,24 +1,20 @@
 @layouts.app()
 <div class="flex min-h-[80vh] flex-col justify-center py-12 sm:px-6 lg:px-8">
-    @!title({ text: product.name })
-    
-  <div>
-    <div class="bg-slate-200">
-      <p>
-      Nome:
-      {{ product.name }}
-      </p>
-      <p>
-      Preço:
-      {{ product.price }}
-      </p>
-    </div>
-    <div>
-      Categoria {{ product.category.name }}
-    </div>
-    <div>
-      Descrição {{ product.description }}
-    </div>
+    <div class="flex flex-row align-start justify-center">
+        <img src="{{ product.image }}" alt="imagem do produto" id="imagePreview" class="block border rounded-lg aspect-square w-1/2">
+        <div class="flex flex-col justify-start align-start p-4">
+            @!title({ text: product.name, class: 'text-start' })
+            <p class="text-neutral-600">
+                {{ product.description }}
+            </p>
+            <p class="text-neutral-600 mb-4">
+              Categoria: {{ product.category.name }}
+            </p>
+            <p class="text-lg font-bold self-end">
+                R$
+                {{ product.price }}
+            </p>
+        </div>
   </div>
 </div>
 @end

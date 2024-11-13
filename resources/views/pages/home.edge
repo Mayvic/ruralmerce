@@ -1,5 +1,27 @@
 @layouts.app()
-    <div>
-        <h1 class="text-xl font-bold">Produtos em alta</h1>
-    </div>
+<div class="flex min-h-[80vh] flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div class="flex flex-row align-center items-center justify-center">
+       
+        <img src="{{asset('resources/images/ruralmerce_hero.png')}}" alt="ruralmerce" class="block aspect-square w-1/2">
+        <div class="flex flex-col justify-start align-start p-16">
+            <h2 class="text-indigo-500 font-bold text-lg">
+                Produtos em Alta!
+            </h2>
+            <h1 class="font-bold text-3xl">
+                Comunidade acadêmica para o seu bolso!
+            </h1>
+            <p class="text-neutral-600 my-4">
+              Conectando a comunidade acadêmica com produtos de qualidade!
+              O e-commerce da nossa universidade. Feito para você!
+            </p>
+
+            @button({
+                href: route('users.create'),
+                variant: 'primary'
+              })
+                Crie sua Conta
+              @end
+        </div>
+  </div>
+</div>
 @end
