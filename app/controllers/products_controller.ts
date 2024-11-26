@@ -9,6 +9,8 @@ export default class ProductsController {
   /**
    * Display a list of resource
    */
+
+  //lista produtos
   async index({ request, view }: HttpContext) {
     const page = request.input('page', 1)
     const limit = 10
@@ -23,6 +25,7 @@ export default class ProductsController {
   /**
    * Display form to create a new record
    */
+  //renderiza a pag de criar prod
   async create({ view }: HttpContext) {
     const categories = await Category.all()
     
@@ -32,6 +35,7 @@ export default class ProductsController {
   /**
    * Handle form submission for the create action
    */
+  //cria prod
   async store({ request, response }: HttpContext) {
     const payload = await request.validateUsing(createProductValidator)
     
@@ -49,6 +53,7 @@ export default class ProductsController {
   /**
    * Show individual record
    */
+  //mostra um prod
   async show({ params, view }: HttpContext) {
     const product = await Product.findOrFail(params.id)
     await product.load('category')

@@ -3,10 +3,13 @@ import { createAuthValidator } from '#validators/auth'
 import User from '#models/user'
 
 export default class AuthController {
+
+    //renderiza a pagina de criar login
     create({ view }: HttpContext) {
         return view.render('pages/login')
     }
 
+    //realiza o login
     async store({ auth, request, response, session }: HttpContext) {
         try {
             const payload = await request.validateUsing(createAuthValidator)
@@ -21,6 +24,7 @@ export default class AuthController {
         return response.redirect().toRoute('products.index')
     }
 
+    //desloga
     async destroy({ auth, response }: HttpContext) {
         await auth.use('web').logout()
 

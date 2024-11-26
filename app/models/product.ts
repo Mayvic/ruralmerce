@@ -24,6 +24,7 @@ export default class Product extends BaseModel {
   
   @column()
   declare image: string
+  //salva o caminho da imagem 
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

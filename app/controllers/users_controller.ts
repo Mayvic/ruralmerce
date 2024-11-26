@@ -7,10 +7,12 @@ export default class UsersController {
         // TODO
     }
     
+    //renderiza a pagina de criar user
     create({ view }: HttpContext) {
         return view.render('pages/users/create')
     }
     
+    //cria um user
     async store({ request, response }: HttpContext) {
         const payload = await request.validateUsing(createUserValidator)
         
@@ -22,10 +24,12 @@ export default class UsersController {
         return response.redirect().toRoute('auth.create')
     }
     
+    //renderiza a pagina de editar user
     edit({ view }: HttpContext) {
         return view.render('pages/users/edit')
     }
     
+    //edita um user
     async update({ request, response, session }: HttpContext) {
         const payload = await request.validateUsing(createUserValidator)
         const user = await User.findByOrFail('email', payload.email)
